@@ -52,6 +52,7 @@ const addressesTest = [
   "0xa0ee7a142d267c1f36714e4a8f75612f20a79720",
 ];
 
+// return the total balance of all the addresses.This is the challenge from AU week 3
 const getTotalBalance = async (addresses) => {
   const querys = [];
 
@@ -64,19 +65,17 @@ const getTotalBalance = async (addresses) => {
     });
   });
 
+  // doing many request to the node and save the response
   const responses = await axios.post(ALCHEMY_URL, querys);
-  console.log(responses.data);
 
-  const getTotalBalance = responses.data.map((res) => {
-    let totalBalance = 0;
+  let totalBalance = 0;
+
+  responses.data.map((res) => {
     const hexToInteger = parseInt(res.result);
     totalBalance = totalBalance + hexToInteger;
   });
-
-  const hexToInteger = parseInt(responses.data[2].result);
-  console.log(hexToInteger);
-
-  // return the total balance of all the addresses
+  console.log(totalBalance);
+  return totalBalance;
 };
 
 getTotalBalance(addressesTest);
