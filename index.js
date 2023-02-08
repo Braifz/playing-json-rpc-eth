@@ -1,8 +1,8 @@
 const axios = require("axios");
-
+require("dotenv").config();
 // copy-paste your URL provided in your Alchemy.com dashboard
-const ALCHEMY_URL =
-  "https://eth-goerli.g.alchemy.com/v2/2H449vdDoKdwLJxsEGpmgY9f3GO-Ks6I";
+const { ALCHEMY_URL_TEST } = process.env;
+const ALCHEMY_URL = ALCHEMY_URL_TEST;
 
 const getBlockByNumber = async () => {
   try {
@@ -78,7 +78,7 @@ const getTotalBalance = async (addresses) => {
   return totalBalance;
 };
 
-getTotalBalance(addressesTest);
+// getTotalBalance(addressesTest);
 
 // getBlockByHash();
 // getBlockByNumber();
